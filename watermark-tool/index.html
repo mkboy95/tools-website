@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短视频解析下载</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div style="text-align: left; margin-bottom: 20px;">
+                <a href="../index.html" style="color: #667eea; text-decoration: none; font-weight: bold;">
+                    ← 返回首页
+                </a>
+            </div>
+            <h1>短视频解析下载</h1>
+            <div class="input-box">
+                <input type="text" id="video_url" placeholder="请输入视频链接">
+                <button id="submit"><i class="fa-solid fa-play"></i> 解析视频</button>
+            </div>
+            <div class="video-box" id="video_show_box" style="display: none;">
+                <video id="video_show" src="" controls crossorigin="anonymous"></video>
+                <button id="downloadVideo" class="download-btn"><i class="fa-solid fa-download"></i> 保存视频</button>
+            </div>
+            <div class="footer">
+                仅供学习交流使用
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script>
+        $(function () {
+            // 解析视频（使用你自己的接口）
+            $("#submit").click(function () {
+                var url = $("#video_url").val().trim();
+                if (url == "") {
+                    alert("请输入视频链接");
+                    return;
+                }
+                var e = this;
+                e.disabled = !0, $(e).html("<i class='fa-solid fa-spinner fa-spin'></i> 解析中...");
+
+                // 你的解析接口
+                axios.get("https://dsp.202597.xyz/short_videos/sv1.php?url=" + encodeURIComponent(url))
+                .then(function (t) {
+                    if (t.data.code == 200 || t.data.url) {
+                        var videoUrl = t.data.url;
+                        $("#video_show").attr("src", videoUrl);
+                        $("#video_show").attr("data-video", videoUrl);
+                        $("#video_show_box").show();
+                        alert("解析成功！");
+                    } else {
+                        alert(t.data.msg || "解析失败");
+                    }
+                }).catch(function (t) {
+                    console.log(t);
+                    alert("解析失败：接口返回403，服务器拒绝访问");
+                }).finally(function () {
+                    e.disabled = !1, $(e).html("<i class='fa-solid fa-play'></i> 解析视频");
+                });
+            });
+
+            // 保存视频（纯前端，无接口，永不403）
+            $("#downloadVideo").click(function () {
+                var videoUrl = $("#video_show").attr("data-video");
+                if (!videoUrl) {
+                    alert("请先解析视频");
+                    return;
+                }
+                try {
+                    const a = document.createElement('a');
+                    a.href = videoUrl;
+                    a.download = 'shortvideo_' + Date.now() + '.mp4';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    alert("已开始下载！未自动下载请右键视频保存！");
+                } catch (err) {
+                    alert("保存失败：" + err.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
