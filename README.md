@@ -34,6 +34,19 @@ tools/
 
 ## 部署到 EdgeOne
 
+### 🚀 一键部署（推荐）
+
+[![部署到 EdgeOne](https://img.shields.io/badge/部署到-EdgeOne-blue?style=for-the-badge&logo=tencent)](https://console.cloud.tencent.com/edgeone/static-website/create)
+
+点击上方按钮，按照提示完成以下步骤：
+1. 授权 EdgeOne 访问你的 GitHub 账户
+2. 选择 `mkboy95/tools-website` 仓库
+3. 配置构建命令：
+   - 安装依赖：`cd cover-tool && npm install`
+   - 构建：`cd cover-tool && npm run build`
+   - 输出目录：`.`
+4. 开启自动部署，每次推送代码都会自动构建和部署
+
 ### 方法一：手动部署
 
 1. 将整个项目文件夹上传到 EdgeOne 静态托管
@@ -44,18 +57,6 @@ tools/
 1. 将代码推送到 GitHub 仓库
 2. GitHub Actions 会自动触发构建
 3. 下载构建产物并部署到 EdgeOne
-
-### 方法三：EdgeOne Git 自动部署（推荐）
-
-EdgeOne 支持直接绑定 GitHub 仓库实现自动部署：
-
-1. 在 EdgeOne 控制台创建静态站点
-2. 绑定你的 GitHub 仓库
-3. 配置构建命令：
-   - 安装依赖：`cd cover-tool && npm install`
-   - 构建：`cd cover-tool && npm run build`
-   - 输出目录：`.`
-4. 开启自动部署，每次推送代码都会自动构建和部署
 
 ## 添加新工具
 
