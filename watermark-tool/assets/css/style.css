@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.card h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input-box input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.input-box button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.input-box button:hover {
+    transform: translateY(-2px);
+}
+
+.video-box {
+    margin: 30px 0;
+}
+
+.video-box video {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.download-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #666;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 30px 20px;
+    }
+
+    .input-box {
+        flex-direction: column;
+    }
+
+    .input-box button {
+        width: 100%;
+    }
+}

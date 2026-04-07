@@ -4,7 +4,7 @@ import './assets/index.css';
 
 const app = createApp(App);
 
-const fontFamily = `${import.meta.env.VITE_APP_FONT_FAMILY}, sans-serif`;
+const fontFamily = 'LXGW Bright Medium, sans-serif';
 document.documentElement.style.setProperty('--vue-app-font-family', fontFamily);
 
 app.mount('#app');
