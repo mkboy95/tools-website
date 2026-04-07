@@ -18,17 +18,23 @@ jobs:
       with:
         node-version: '18'
         
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build Vue project
+      run: npm run build
+      
     - name: Install dependencies and build cover-tool
       run: |
         cd cover-tool
-        npm install
+        npm install --legacy-peer-deps
         npm run build
         cp -r dist/* .
         
     - name: Create deploy directory
       run: |
         mkdir -p deploy
-        cp index.html deploy/
+        cp -r dist/* deploy/
         cp -r cover-tool deploy/
         cp -r watermark-tool deploy/
         
